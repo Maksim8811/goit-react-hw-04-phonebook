@@ -73,8 +73,8 @@ import PropTypes from 'prop-types';
 // }
 
 function Phonebook ({onSubmit}) {
-  // loginInputId = nanoid()
-  // telInputId = nanoid()
+ const loginInputId = nanoid()
+ const telInputId = nanoid()
   
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
@@ -83,6 +83,7 @@ function Phonebook ({onSubmit}) {
 
   const  handleNameChange = evt => {
       setName(evt.target.value)
+      setId(loginInputId)
     }
 
   const handleNumberChange = evt => {
@@ -91,7 +92,7 @@ function Phonebook ({onSubmit}) {
 
   const handleSubmit = ev => {
       ev.preventDefault()
-      // this.props.onSubmit(this.state)
+      onSubmit({name, number, id})
       console.log('name, number, id', name, number, id)
       reset()
     }
@@ -108,8 +109,8 @@ function Phonebook ({onSubmit}) {
       return (
       <>
       <div className="container_form">
-      <form htmlFor={null} className="form" onSubmit={handleSubmit}>
-      <label className="label_form" id={null}>Name
+      <form htmlFor={loginInputId} className="form" onSubmit={handleSubmit}>
+      <label className="label_form" id={loginInputId}>Name
       <input
       onChange={handleNameChange} 
       value={name} 
@@ -120,7 +121,7 @@ function Phonebook ({onSubmit}) {
       required
 />
 
-<label className="label_form" id={null}>Number
+<label className="label_form" id={telInputId}>Number
 <input
 onChange={handleNumberChange}
 value={number} 
